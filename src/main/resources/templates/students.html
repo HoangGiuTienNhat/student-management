@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Sach Sinh Vien</title>
+    <title>Danh Sách Sinh Viên</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 <div class="container">
-    <h1>Danh Sach Sinh Vien</h1>
+    <div class="header-actions">
+        <h1>Danh Sách Sinh Viên</h1>
+        <a th:href="@{/students/new}" class="btn btn-success">Thêm Mới</a>
+    </div>
 
     <form class="search-form" th:action="@{/students}" method="get">
-        <input type="text" name="keyword" placeholder="Nhap ten sinh vien..." th:value="${keyword}">
-        <button type="submit">Tim</button>
+        <input type="text" name="keyword" placeholder="Nhập tên sinh viên..." th:value="${keyword}">
+        <button type="submit" class="btn btn-primary">Tìm</button>
     </form>
 
     <table>
         <thead>
         <tr>
             <th>ID</th>
-            <th>Ho va Ten</th>
+            <th>Họ và Tên</th>
             <th>Email</th>
-            <th>Tuoi</th>
+            <th>Tuổi</th>
+            <th class="action-column">Hành Động</th>
         </tr>
         </thead>
         <tbody>
@@ -30,13 +34,15 @@
             <td th:text="${student.name}"></td>
             <td th:text="${student.email}"></td>
             <td th:text="${student.age}"></td>
+            <td class="action-column">
+                <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-primary btn-sm">Xem Chi Tiết</a>
+            </td>
         </tr>
         <tr th:if="${#lists.isEmpty(dsSinhVien)}">
-            <td colspan="4" class="empty">Khong co du lieu sinh vien</td>
+            <td colspan="5" class="empty">Không có dữ liệu sinh viên</td>
         </tr>
         </tbody>
     </table>
 </div>
 </body>
 </html>
-
