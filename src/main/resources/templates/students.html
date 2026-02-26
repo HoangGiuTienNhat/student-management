@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sach Sinh Vien</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Danh Sach Sinh Vien</h1>
+
+    <form class="search-form" th:action="@{/students}" method="get">
+        <input type="text" name="keyword" placeholder="Nhap ten sinh vien..." th:value="${keyword}">
+        <button type="submit">Tim</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ho va Ten</th>
+            <th>Email</th>
+            <th>Tuoi</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${dsSinhVien}" th:classappend="${student.age < 18} ? 'text-danger' : ''">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.age}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(dsSinhVien)}">
+            <td colspan="4" class="empty">Khong co du lieu sinh vien</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
