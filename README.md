@@ -3,7 +3,7 @@
 ## Thông tin nhóm
 
 - Nguyễn Trọng Nhân - MSSV: 2212370
-- Hoàng Giữ Tiến Nhất - MSSV: 
+- Hoàng Giữ Tiến Nhất - MSSV: 2312460
 
 ## URL Web Service: 
 https://student-management-haqf.onrender.com/students
