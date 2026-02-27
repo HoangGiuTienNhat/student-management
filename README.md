@@ -3,7 +3,10 @@
 ## Thông tin nhóm
 
 - Nguyễn Trọng Nhân - MSSV: 2212370
-- Hoàng Giữ Tiến Nhất - MSSV: 2312460
+- Hoàng Giữ Tiến Nhất - MSSV: 
+
+## URL Web Service: 
+https://student-management-haqf.onrender.com/students
 
 ## 1) Yêu cầu môi trường
 
@@ -136,3 +139,15 @@ curl -X POST http://localhost:8080/api/students \
   -H "Content-Type: application/json" \
   -d "{\"name\":\"\",\"email\":\"noname@gmail.com\",\"age\":19}"
 ```
+
+## Screenshot các module lab 4:
+### Trang hiển thị toàn bộ danh sách sinh viên
+![alt text](image.png)
+### Xem chi tiết sinh viên
+![alt text](image-1.png)
+### Xóa sinh viên
+![alt text](image-2.png)
+### Trang thêm mới sinh viên
+![alt text](image-3.png)
+### Trang chỉnh sửa
+![alt text](image-4.png)
