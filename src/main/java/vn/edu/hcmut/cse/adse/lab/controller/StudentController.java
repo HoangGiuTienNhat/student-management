@@ -2,6 +2,7 @@ package vn.edu.hcmut.cse.adse.lab.controller;
 
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +34,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable String id) {
+    public ResponseEntity<Student> getStudentById(@PathVariable UUID id) {
         return ResponseEntity.ok(studentService.getById(id));
     }
 
@@ -43,14 +44,13 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable String id, @Valid @RequestBody Student student) {
+    public ResponseEntity<Student> updateStudent(@PathVariable UUID id, @Valid @RequestBody Student student) {
         return ResponseEntity.ok(studentService.update(id, student));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable String id) {
+    public ResponseEntity<Void> deleteStudent(@PathVariable UUID id) {
         studentService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
-

@@ -34,8 +34,13 @@
             <td th:text="${student.name}"></td>
             <td th:text="${student.email}"></td>
             <td th:text="${student.age}"></td>
-            <td class="action-column">
-                <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-primary btn-sm">Xem Chi Tiết</a>
+            <td class="action-column action-buttons">
+                <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-primary btn-sm">Xem</a>
+                <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-warning btn-sm">Sửa</a>
+                <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post" class="inline-form"
+                      onsubmit="return confirm('Bạn có chắc muốn xóa sinh viên này?');">
+                    <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                </form>
             </td>
         </tr>
         <tr th:if="${#lists.isEmpty(dsSinhVien)}">

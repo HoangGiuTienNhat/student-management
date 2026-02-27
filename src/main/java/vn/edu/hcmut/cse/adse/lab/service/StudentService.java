@@ -1,6 +1,7 @@
 package vn.edu.hcmut.cse.adse.lab.service;
 
 import java.util.List;
+import java.util.UUID;
 import org.springframework.stereotype.Service;
 import vn.edu.hcmut.cse.adse.lab.entity.Student;
 import vn.edu.hcmut.cse.adse.lab.exception.StudentNotFoundException;
@@ -19,7 +20,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student getById(String id) {
+    public Student getById(UUID id) {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new StudentNotFoundException(id));
     }
@@ -32,7 +33,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public Student update(String id, Student student) {
+    public Student update(UUID id, Student student) {
         Student existingStudent = studentRepository.findById(id)
                 .orElseThrow(() -> new StudentNotFoundException(id));
 
@@ -43,7 +44,7 @@ public class StudentService {
         return studentRepository.save(existingStudent);
     }
 
-    public void delete(String id) {
+    public void delete(UUID id) {
         if (!studentRepository.existsById(id)) {
             throw new StudentNotFoundException(id);
         }

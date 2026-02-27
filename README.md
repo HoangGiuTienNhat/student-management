@@ -51,6 +51,9 @@ Trên Windows (PowerShell):
 
 ## 4) Full set of curl commands (CRUD)
 
+> Lưu ý: `id` hiện dùng kiểu `UUID` và được **tự động sinh** khi tạo mới.
+> Vì vậy khi `POST /api/students` bạn **không cần truyền id**.
+
 Base URL:
 
 ```bash
@@ -62,7 +65,7 @@ http://localhost:8080/api/students
 ```bash
 curl -X POST http://localhost:8080/api/students \
   -H "Content-Type: application/json" \
-  -d "{\"id\":\"S01\",\"name\":\"Nguyen Van A\",\"email\":\"a@gmail.com\",\"age\":20}"
+  -d "{\"name\":\"Nguyen Van A\",\"email\":\"a@gmail.com\",\"age\":20}"
 ```
 
 Tạo thêm 1 sinh viên:
@@ -70,7 +73,7 @@ Tạo thêm 1 sinh viên:
 ```bash
 curl -X POST http://localhost:8080/api/students \
   -H "Content-Type: application/json" \
-  -d "{\"id\":\"S02\",\"name\":\"Tran Thi B\",\"email\":\"b@gmail.com\",\"age\":21}"
+  -d "{\"name\":\"Tran Thi B\",\"email\":\"b@gmail.com\",\"age\":21}"
 ```
 
 ### 4.2 Get all students (GET)
@@ -79,30 +82,32 @@ curl -X POST http://localhost:8080/api/students \
 curl -X GET http://localhost:8080/api/students
 ```
 
+Sau khi tạo, lấy `id` UUID từ response JSON và thay vào `${UUID}` trong các lệnh bên dưới.
+
 ### 4.3 Get student by id (GET)
 
 ```bash
-curl -X GET http://localhost:8080/api/students/S01
+curl -X GET http://localhost:8080/api/students/${UUID}
 ```
 
 ### 4.4 Update student (PUT)
 
 ```bash
-curl -X PUT http://localhost:8080/api/students/S01 \
+curl -X PUT http://localhost:8080/api/students/${UUID} \
   -H "Content-Type: application/json" \
-  -d "{\"id\":\"S01\",\"name\":\"Nguyen Van A Updated\",\"email\":\"a.updated@gmail.com\",\"age\":22}"
+  -d "{\"name\":\"Nguyen Van A Updated\",\"email\":\"a.updated@gmail.com\",\"age\":22}"
 ```
 
 ### 4.5 Delete student (DELETE)
 
 ```bash
-curl -X DELETE http://localhost:8080/api/students/S01
+curl -X DELETE http://localhost:8080/api/students/${UUID}
 ```
 
 ### 4.6 Verify delete (GET after delete)
 
 ```bash
-curl -X GET http://localhost:8080/api/students/S01
+curl -X GET http://localhost:8080/api/students/${UUID}
 ```
 
 Kỳ vọng: trả về `404 Not Found`.
@@ -116,7 +121,7 @@ Kỳ vọng: trả về `404 Not Found`.
 ```bash
 curl -X POST http://localhost:8080/api/students \
   -H "Content-Type: application/json" \
-  -d "{\"id\":\"S03\",\"name\":\"Invalid Age\",\"email\":\"invalid@gmail.com\",\"age\":0}"
+  -d "{\"name\":\"Invalid Age\",\"email\":\"invalid@gmail.com\",\"age\":0}"
 ```
 
 ### Name rỗng (400)
@@ -124,6 +129,5 @@ curl -X POST http://localhost:8080/api/students \
 ```bash
 curl -X POST http://localhost:8080/api/students \
   -H "Content-Type: application/json" \
-  -d "{\"id\":\"S04\",\"name\":\"\",\"email\":\"noname@gmail.com\",\"age\":19}"
+  -d "{\"name\":\"\",\"email\":\"noname@gmail.com\",\"age\":19}"
 ```
-
