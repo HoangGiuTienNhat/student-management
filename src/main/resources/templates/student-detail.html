@@ -19,14 +19,20 @@
 
     <div class="detail-actions">
         <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-warning">Chỉnh Sửa</a>
-        
-        <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post" 
-              onsubmit="return confirm('Bạn có chắc chắn muốn xóa sinh viên này không? Hành động này không thể hoàn tác.');" 
+
+        <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post"
+              onsubmit="return confirm('Bạn có chắc chắn muốn xóa sinh viên này không? Hành động này không thể hoàn tác.');"
               style="display: inline-block;">
             <button type="submit" class="btn btn-danger">Xóa</button>
         </form>
-        
+
         <a th:href="@{/students}" class="btn btn-secondary">Quay Lại</a>
+    </div>
+
+    <div class="team-info">
+        <p><strong>Thành viên nhóm:</strong></p>
+        <p>Nguyễn Trọng Nhân - MSSV: 2212370</p>
+        <p>Hoàng Giữ Tiến Nhất - MSSV: 2312460</p>
     </div>
 </div>
 </body>

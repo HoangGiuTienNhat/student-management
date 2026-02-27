@@ -1,5 +1,10 @@
 # Student Management System
 
+## Thông tin nhóm
+
+- Nguyễn Trọng Nhân - MSSV: 2212370
+- Hoàng Giữ Tiến Nhất - MSSV: 2312460
+
 ## 1) Yêu cầu môi trường
 
 - Java 17
