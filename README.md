@@ -5,8 +5,42 @@
 - Nguyễn Trọng Nhân - MSSV: 2212370
 - Hoàng Giữ Tiến Nhất - MSSV: 2312460
 
-## URL Web Service: 
+## URL Web Service:
+
 https://student-management-haqf.onrender.com/students
+
+## Lab 1 - Câu hỏi & trả lời
+
+### Câu 3. Toàn vẹn dữ liệu (Constraints)
+
+**Câu hỏi:**
+
+- Thử Insert một sinh viên nhưng bỏ trống cột `name` (để `NULL`).
+- Database có báo lỗi không? Từ đó suy nghĩ xem sự thiếu chặt chẽ này ảnh hưởng gì khi code Java đọc dữ liệu lên?
+
+**Trả lời:**
+
+- Với cấu hình hiện tại của project, cột `name` được map với `@Column(nullable = false)` và có validation `@NotBlank`, nên khi insert `name = NULL` thì hệ thống sẽ báo lỗi vi phạm ràng buộc (bị chặn ở tầng app hoặc DB).
+- Nếu không có ràng buộc chặt, dữ liệu `NULL` vẫn có thể lọt vào database và gây:
+  - Hiển thị thiếu dữ liệu trên UI.
+  - Lỗi logic nghiệp vụ (search/sort theo tên không chính xác).
+  - Dễ phát sinh `NullPointerException` khi xử lý ở Java.
+  - Khó bảo trì và làm sạch dữ liệu về sau.
+
+=> Cần đảm bảo ràng buộc ở cả tầng Database và tầng Application.
+
+### Câu 4. Cấu hình Hibernate
+
+**Câu hỏi:**
+
+- Tại sao mỗi lần tắt ứng dụng và chạy lại, dữ liệu cũ trong Database lại bị mất hết?
+
+**Trả lời:**
+
+- Nguyên nhân thường do cấu hình `spring.jpa.hibernate.ddl-auto` đang để chế độ như `create` hoặc `create-drop`:
+  - `create`: mỗi lần start app sẽ tạo lại bảng.
+  - `create-drop`: tạo khi start và xóa khi shutdown.
+- Vì vậy dữ liệu cũ bị mất sau mỗi lần chạy lại.
 
 ## 1) Yêu cầu môi trường
 
@@ -141,13 +175,23 @@ curl -X POST http://localhost:8080/api/students \
 ```
 
 ## Screenshot các module lab 4:
+
 ### Trang hiển thị toàn bộ danh sách sinh viên
-![alt text](image.png)
+
+![alt text](images/image.png)
+
 ### Xem chi tiết sinh viên
-![alt text](image-1.png)
+
+![alt text](images/image-1.png)
+
 ### Xóa sinh viên
-![alt text](image-2.png)
+
+![alt text](images/image-2.png)
+
 ### Trang thêm mới sinh viên
-![alt text](image-3.png)
+
+![alt text](images/image-3.png)
+
 ### Trang chỉnh sửa
-![alt text](image-4.png)
+
+![alt text](images/image-4.png)
