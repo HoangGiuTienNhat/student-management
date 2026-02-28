@@ -11,6 +11,24 @@ https://student-management-haqf.onrender.com/students
 
 ## Lab 1 - Câu hỏi & trả lời
 
+### Câu 2. Ràng buộc Khóa Chính (Primary Key)
+
+**Câu hỏi:**
+
+- Cố tình Insert một sinh viên có `id` trùng với một người đã có sẵn.
+- Quan sát thông báo lỗi: `UNIQUE constraint failed`. Tại sao Database lại chặn thao tác này?
+
+**Trả lời:**
+
+- Cột khóa chính (`PRIMARY KEY`) bắt buộc phải **duy nhất** cho mỗi bản ghi.
+- Khi insert `id` bị trùng, database vi phạm ràng buộc duy nhất của khóa chính nên sẽ từ chối và báo lỗi `UNIQUE constraint failed` (hoặc lỗi duplicate key tương đương tùy hệ quản trị CSDL).
+- Database chặn thao tác này để đảm bảo:
+  - Mỗi sinh viên được định danh chính xác bằng 1 `id` duy nhất.
+  - Tránh mâu thuẫn dữ liệu (2 bản ghi có cùng định danh).
+  - Đảm bảo toàn vẹn tham chiếu cho các bảng liên quan (nếu có foreign key).
+
+=> Vì vậy, trùng khóa chính luôn là thao tác không hợp lệ và phải bị chặn ở mức CSDL.
+
 ### Câu 3. Toàn vẹn dữ liệu (Constraints)
 
 **Câu hỏi:**
